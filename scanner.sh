@@ -17,6 +17,13 @@ if [ "$SCANTYPE" = "portscan" ]
 		-oX /mount/mpd-scanner/output/$SCANTYPE-$DATESTAMP.xml
 	fi
 
+if [ "$SCANTYPE" = "quickscan" ]
+	then
+		nmap -v -Pn -r -R -sT -sV -O -A \
+		-iL /mount/mpd-scanner/targets.txt \
+		-oX /mount/mpd-scanner/output/$SCANTYPE-$DATESTAMP.xml
+	fi
+
 if [ "$SCANTYPE" = "hardcore" ]
 	then
 		nmap -v -Pn -r -R -sT -sV -O -A -p 1-48000 \
