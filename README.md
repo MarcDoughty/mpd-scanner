@@ -22,6 +22,9 @@ To build or update the container, CD to the project directory and run:
 `docker build . -t mpd-scanner` (this uses the Dockerfile to add to the Kali Linux image, and names it in the local container registry)
 
 # Using
-To run the scanner, run this command:
+
+The scanner will perform a scan of the targets in `targets.txt`, one IP or FQDN target per line (nmap can accept ranges, per its documentation). The type of scans are defined in stanzas within scanner.sh (you are welcome to add your own) and are passed to the container as environment vairable SCANTYPE when you run the scanner.
+
+To run the scanner, use this command:
 
 `docker run -e SCANTYPE=portscan --mount type=bind,source=/full/path/to/mpd-scanner,target=/mount/mpd-scanner mpd-scanner /mount/mpd-scanner/scanner.sh` (This runs the container you just built, and 'binds' the container to your local project folder so your output is saved locally)
