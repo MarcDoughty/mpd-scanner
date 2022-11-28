@@ -15,10 +15,13 @@ This is a demonstration project that is both handy and introduces a few concepts
  4. Read through the project, starting from the Dockerfile and ending in scanner.sh.
 
 # Building and Updating the container
-To build or update the container, CD to the project directory and run
-```docker pull kalilinux/kali-rolling
-```docker build . -t mpd-scanner
+To build or update the container, CD to the project directory and run:
+
+`docker pull kalilinux/kali-rolling` (this pulls the latest Kali Linux image from [https://hub.docker.com/r/kalilinux/kali-rolling])
+
+`docker build . -t mpd-scanner` (this uses the Dockerfile to add to the Kali Linux image, and names it in the local container registry)
 
 # Using
 To run the scanner, run this command:
-```docker run -e SCANTYPE=portscan --mount type=bind,source=/your/project/folder/foundry/mpd-scanner,target=/mount/mpd-scanner mpd-scanner /mount/mpd-scanner/scanner.sh
+
+`docker run -e SCANTYPE=portscan --mount type=bind,source=/full/path/to/mpd-scanner,target=/mount/mpd-scanner mpd-scanner /mount/mpd-scanner/scanner.sh` (This runs the container you just built, and 'binds' the container to your local project folder so your output is saved locally)
